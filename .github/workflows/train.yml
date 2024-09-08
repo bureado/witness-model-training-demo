@@ -13,8 +13,6 @@ jobs:
     - name: Install dependencies
       run: cd 101-sk-simple/ && pip3 install -r ./requirements.txt
     - name: Train model (with witness)
-      # You may pin to the exact commit or the version.
-      # uses: testifysec/witness-run-action@79320a907f611f2fb40ced8e13c66af988b2d9db
       uses: testifysec/witness-run-action@v0.2.2
       with:
         # Directory to install witness in. The directory will be created if it does not exist
@@ -73,4 +71,4 @@ jobs:
       uses: actions/upload-artifact@v3.2.1-node20
       with:
         name: 101-sk-simple.joblib
-        path: 101-sk-simple/trained_model.joblib
+        path: trained_model.joblib
