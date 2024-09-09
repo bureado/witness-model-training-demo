@@ -1,0 +1,69 @@
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
+jobs:
+  train-sarif:
+    name: Train a (pickled) model
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: cd 102-sk-sarif/ && pip3 install -r ./requirements.txt
+    - name: Train model (with witness)
+      uses: testifysec/witness-run-action@v0.2.2
+      with:
+        # Directory to install witness in. The directory will be created if it does not exist
+        # witness-install-dir: # optional, default is ./
+        # URL of the Archivista server to store or retrieve attestations
+        # archivista-server: # optional, default is https://archivista.testifysec.io
+        # Attestations to record
+        attestations: environment git github sarif # optional, default is environment git github
+        # Export the attestor link predicate in its own attestation
+        # attestor-link-export: # optional, default is false
+        # Path to the Maven POM file
+        # attestor-maven-pom-path: # optional
+        # Export the SBOM predicate in its own attestation
+        # attestor-sbom-export: # optional, default is false
+        # Export the SLSA predicate in its own attestation
+        # attestor-slsa-export: # optional, default is false
+        # Use Sigstore for attestation
+        # enable-sigstore: # optional, default is true
+        # command to run
+        command: 102-sk-sarif/train.sh
+        # Path to the signing key's certificate
+        # certificate: # optional
+        # Use Archivista to store or retrieve attestations
+        # enable-archivista: # optional, default is true
+        # Fulcio address to sign with
+        # fulcio: # optional
+        # OIDC client ID to use for authentication
+        # fulcio-oidc-client-id: # optional
+        # OIDC issuer to use for authentication
+        # fulcio-oidc-issuer: # optional
+        # Raw token to use for authentication
+        # fulcio-token: # optional
+        # Intermediates that link trust back to a root of trust in the policy
+        # intermediates: # optional
+        # Path to the signing key
+        # key: # optional
+        # File to which to write signed data. Defaults to stdout
+        # outfile: # optional
+        # Pattern to use when recording products. Files that match this pattern will be excluded as subjects on the attestation.
+        # product-exclude-glob: # optional
+        # Pattern to use when recording products. Files that match this pattern will be included as subjects on the attestation.
+        # product-include-glob: # optional
+        # Path to the SPIFFE Workload API socket
+        # spiffe-socket: # optional
+        # Name of the step being run
+        step: train
+        # Timestamp Authority Servers to use when signing envelope
+        # timestamp-servers: # optional
+        # Enable tracing for the command
+        trace: true # optional, default is false
+        # Version of Witness CLI
+        # version: # optional, default is 0.6.0
+        # Directory from which commands will run
+        # workingdir: # optional
