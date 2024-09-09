@@ -20,7 +20,7 @@ def json_to_sarif(json_data):
                 "invocations": [
                     {
                         "executionSuccessful": True,
-                        "startTimeUtc": json_data["summary"]["timestamp"]
+                        # "startTimeUtc": json_data["summary"]["timestamp"]
                     }
                 ]
             }
