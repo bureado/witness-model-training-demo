@@ -13,7 +13,7 @@ jobs:
     - name: Install dependencies
       run: cd 102-sk-sarif/ && pip3 install -r ./requirements.txt
     - name: Train model (with witness)
-      uses: testifysec/witness-run-action@v0.2.2
+      uses: testifysec/witness-run-action@v0.3.0
       with:
         # Directory to install witness in. The directory will be created if it does not exist
         # witness-install-dir: # optional, default is ./
