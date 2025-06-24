@@ -68,7 +68,7 @@ jobs:
         # Directory from which commands will run
         # workingdir: # optional
     - name: Upload trained model
-      uses: actions/upload-artifact@@v4
+      uses: actions/upload-artifact@v4
       with:
         name: 101-sk-simple.joblib
         path: trained_model.joblib
